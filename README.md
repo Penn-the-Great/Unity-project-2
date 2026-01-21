@@ -1,1 +1,1 @@
-# Unity-project-2
+This project is for practicing the School AI
