@@ -6,11 +6,17 @@ public class PlayerMovement : MonoBehaviour
         Rigidbody2D rb;
         public float jumpForce = 5f;
         bool isGrounded = false;
+        public int maxJump = 2;
+        int jumpCount = 0;
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.tag == "Ground")
+            if (collision.gameObject.tag == "Ground"){
                 isGrounded = true;
+                jumpCount = 0;
+
+
+            }   
         }
 
         void OnCollisionExit2D(Collision2D collision)
@@ -34,4 +40,14 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
            }
         }
+
+        void Update ()
+        {
+            if (Input.GetKeyDown(KeyCode.W) && jumpCount< maxJump)
+           {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            jumpCount++;
+           }
+        }
+        
 }
